@@ -4,7 +4,7 @@ import "./styles.css";
 
 function App() {
   return (
-    <div>
+    <div className="chatbox-container">
       {/* Orbiting planets */}
       <div className="planet planet1"></div>
       <div className="planet planet2"></div>

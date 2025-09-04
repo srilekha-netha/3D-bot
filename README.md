@@ -33,9 +33,7 @@ npm start
 ## Features
 - Pill bubbles, multi-line wrapping
 - Animated space background
-- Auto-scroll, hidden scrollbar
 - Emoji sanitization of bot replies
-- Long-reply trimming
 - Actions on bot messages:
   - 📋 Copy
   - 🗑️ Delete

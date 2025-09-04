@@ -1,0 +1,264 @@
+/* Full-screen space background */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+
+  background: url("https://tse4.mm.bing.net/th/id/OIP.jBrbZ0GWTDTT6XHZD8SgawHaDt?rs=1&pid=ImgDetMain&o=7&rm=3")
+    no-repeat center center fixed;
+  background-size: cover;
+
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Floating futuristic chatbox */
+.chatbox {
+  width: 540px;
+  height: 460px;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+
+  /* Glass effect + glow */
+  background: rgba(0, 30, 60, 0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6),
+              0 0 60px rgba(0, 255, 255, 0.2);
+
+  animation: floatBox 6s ease-in-out infinite;
+  position: relative;
+  z-index: 2; /* above planets */
+}
+
+@keyframes floatBox {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: cyan;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.25);
+  text-shadow: 0 0 8px cyan;
+}
+
+.title { letter-spacing: 0.5px; }
+.header-actions .icon-btn { margin-left: 8px; }
+
+/* Messages area */
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Hide scrollbar visually but keep scroll */
+  scrollbar-width: none; /* Firefox */
+}
+
+.messages::-webkit-scrollbar {
+  width: 0; /* Safari/Chrome */
+  height: 0;
+}
+
+/* Pill-style chat bubbles */
+.message {
+  max-width: 85%;
+  width: -moz-fit-content;
+  width: fit-content;       /* size bubble to content up to max */
+  padding: 12px 18px;
+  border-radius: 24px;      /* rounded for multi-line readability */
+  word-wrap: break-word;
+  overflow-wrap: anywhere;  /* ensure long words break */
+  word-break: break-word;
+  white-space: normal;      /* wrap normally inside the bubble */
+  box-sizing: border-box;   /* include padding in max-width */
+  overflow: visible;        /* avoid clipping text */
+  background-clip: padding-box; /* clip background to padding for neat edges */
+  line-height: 1.5;
+  font-size: 14px;
+  display: inline-block;    /* bubble sizes to text */
+  border: none;
+  animation: popIn 280ms ease-out;
+}
+
+.message .message-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+.message .message-actions button {
+  background: rgba(255,255,255,0.85);
+  color: #222;
+  border-radius: 12px;
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.message .message-actions button:hover {
+  background: white;
+}
+
+.message .message-actions button.active.like {
+  background: #0bd66f;
+  color: #021e11;
+}
+
+.message .message-actions button.active.dislike {
+  background: #ff6b6b;
+  color: #2a0606;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px dashed rgba(0, 255, 255, 0.2);
+}
+
+.chip {
+  background: rgba(0, 255, 255, 0.15);
+  color: cyan;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  border-radius: 9999px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.chip:hover {
+  background: rgba(0, 255, 255, 0.3);
+}
+
+.icon-btn {
+  background: transparent;
+  border: 1px solid rgba(0,255,255,0.35);
+  color: cyan;
+  border-radius: 12px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.icon-btn.listening {
+  color: #111;
+  background: cyan;
+}
+
+/* User messages = cyan glowing pill */
+.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  color: white;
+  box-shadow: 0 0 8px rgba(0, 198, 255, 0.6);
+}
+
+/* Bot messages = soft pink pill */
+.bot {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #ffb6c1, #ff9bb3);
+  color: #222;
+  box-shadow: 0 0 8px rgba(255, 182, 193, 0.6);
+}
+
+/* Input area */
+.input-area {
+  display: flex;
+  padding: 10px;
+  gap: 8px;
+  border-top: 1px solid rgba(0, 255, 255, 0.25);
+}
+
+/* Input field */
+input {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* Send button (pill-shaped neon) */
+button {
+  background: linear-gradient(135deg, cyan, #00e5ff);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 50px;
+  font-size: 14px;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 0 10px cyan;
+}
+
+button:hover {
+  background: white;
+  color: black;
+  box-shadow: 0 0 15px cyan, 0 0 25px cyan;
+}
+
+/* Subtle pop-in for new messages */
+@keyframes popIn {
+  0% { transform: scale(0.96) translateY(6px); opacity: 0; }
+  60% { transform: scale(1.02) translateY(0); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Orbiting Planets */
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  animation: orbit linear infinite;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.planet1 {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #ffcc00, #cc9900);
+  animation-duration: 14s;
+  top: 50%; left: 50%;
+}
+
+.planet2 {
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle at 30% 30%, #66ccff, #004466);
+  animation-duration: 22s;
+  top: 50%; left: 50%;
+}
+
+.planet3 {
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #ff6699, #660022);
+  animation-duration: 10s;
+  top: 50%; left: 50%;
+}
+
+@keyframes orbit {
+  0%   { transform: rotate(0deg) translateX(220px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(220px) rotate(-360deg); }
+}
